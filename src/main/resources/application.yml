@@ -4,4 +4,4 @@ app:
     user-name: test
     password: test123
     bucket-primary: service
-    bucket-service: user
+    bucket-user: user
