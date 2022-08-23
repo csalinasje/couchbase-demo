@@ -31,10 +31,10 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
     private String password;
 
     @Value("${app.couchbase.bucket-primary}")
-    private String userBucket;
-
-    @Value("${app.couchbase.bucket-service}")
     private String serviceBucket;
+
+    @Value("${app.couchbase.bucket-user}")
+    private String userBucket;
 
     @Override
     public String getConnectionString() {
@@ -53,12 +53,12 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
 
     @Override
     public String getBucketName() {
-        return userBucket;
+        return serviceBucket;
     }
 
     @Override
     public void configureRepositoryOperationsMapping(RepositoryOperationsMapping mapping) {
-        mapping.mapEntity(User.class, getCouchbaseTemplate(serviceBucket));
+        mapping.mapEntity(User.class, getCouchbaseTemplate(userBucket));
     }
 
     @SneakyThrows
