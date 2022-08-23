@@ -6,6 +6,7 @@ import com.cb.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,8 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository repository;
+    @Autowired
+    ServiceServiceImpl serviceService;
 
     @Override
     public List<User> findAll() {
@@ -26,6 +29,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(User user) {
+        if(user.getService() !=null) {
+            user.getService().forEach(s->
+                serviceService.create(s));
+        }
         repository.save(user);
     }
 }

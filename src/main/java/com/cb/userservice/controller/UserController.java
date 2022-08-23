@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("/api/v1/user")
 public class UserController {
     private UserServiceImpl service;
-    UserController(UserServiceImpl service){
+    public UserController(UserServiceImpl service){
         this.service= service;
     }
 
@@ -25,7 +25,7 @@ public class UserController {
             service.create(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(user);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            throw new RuntimeException();
         }
     }
 
@@ -38,7 +38,7 @@ public class UserController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<User> getById (@PathVariable("id") String id){
        Optional<User> userOpt= service.findById(id);
-       User user = userOpt.isPresent() ? userOpt.get() : null;
-        return new ResponseEntity<User>(user,HttpStatus.ACCEPTED);
+       User user = userOpt.orElse(null);
+        return new ResponseEntity<>(user,HttpStatus.ACCEPTED);
     }
 }
