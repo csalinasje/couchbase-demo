@@ -19,6 +19,7 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public void create(Services service) {
         if (!existServices(service)) {
+            log.info("# Create a service: {}",service);
             service.setId(UUID.randomUUID().toString());
             service.setCreated(new Date());
             repository.save(service);
@@ -28,6 +29,7 @@ public class ServiceServiceImpl implements ServiceService {
     public boolean existServices (Services service) {
         try {
             Optional<Services>services= repository.findByVendor(service.getVendor());
+            log.info("# Exist service: {}",services);
             return services.isPresent();
         } catch (Exception ex) {
             log.error(ex.getMessage(), ex.getCause());
