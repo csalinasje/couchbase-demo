@@ -20,7 +20,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     private ResponseEntity<ErrorModel> handleEntityNotFound(Exception ex){
-        ErrorModel error = new ErrorModel(HttpStatus.NOT_FOUND, "Entity not found", ex.getMessage());
+        ErrorModel error = new ErrorModel(HttpStatus.BAD_REQUEST, "Constraint violation", ex.getMessage());
 
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
