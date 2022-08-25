@@ -2,19 +2,23 @@ package com.cb.userservice.model;
 
 import com.cb.userservice.enums.UserTypes;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
 
 
 @Document
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 8799656478674716638L;
+
     @Id
     private String id;
 
