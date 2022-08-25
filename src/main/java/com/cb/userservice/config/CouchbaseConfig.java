@@ -31,7 +31,7 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
     private String password;
 
     @Value("${app.couchbase.bucket-primary}")
-    private String customerBucket;
+    private String serviceBucket;
 
     @Value("${app.couchbase.bucket-user}")
     private String userBucket;
@@ -53,7 +53,7 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
 
     @Override
     public String getBucketName() {
-        return customerBucket;
+        return serviceBucket;
     }
 
     @Override

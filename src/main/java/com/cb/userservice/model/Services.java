@@ -3,16 +3,16 @@ package com.cb.userservice.model;
 
 import com.cb.userservice.enums.ServiceStatus;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
 
 import java.util.Date;
 
 @Document
-@Getter
+@Data
 @Builder
-public class Service {
+public class Services {
     @Id
     private String id;
 
