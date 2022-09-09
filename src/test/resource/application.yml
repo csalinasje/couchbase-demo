@@ -1,0 +1,5 @@
+jwt:
+  secret: jorge
+  get:
+    token:
+      uri: /authenticate
